@@ -1,39 +1,48 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
-
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
-
-export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
-
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
-
-  if (!loaded) {
-    return null;
-  }
-
+import { View, Text } from "react-native";
+import React from "react";
+import { Drawer } from "expo-router/drawer";
+const _layout = () => {
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <Drawer>
+      <Drawer.Screen
+        name="index"
+        options={{ drawerLabel: "Home", title: "Home", headerShown: false }}
+      />
+
+      <Drawer.Screen
+        name="about/index"
+        options={{ drawerLabel: "Home", title: "Home" }}
+      />
+      <Drawer.Screen
+        name="Login"
+        options={{
+          drawerLabel: () => null, // This removes the label from the drawer
+          title: "Login", // This is still set for the title, though you can omit it if you want
+          drawerItemStyle: { display: "none" }, // This hides the item from the drawer
+          headerShown: false, // This removes the header
+        }}
+      />
+
+      <Drawer.Screen
+        name="Signup"
+        options={{
+          drawerLabel: () => null, // This removes the label from the drawer
+          title: "Signup", // This is still set for the title, though you can omit it if you want
+          drawerItemStyle: { display: "none" }, // This hides the item from the drawer
+          headerShown: false, // This removes the header
+        }}
+      />
+      <Drawer.Screen
+        name="ForgotPassword"
+        options={{
+          drawerLabel: () => null, // This removes the label from the drawer
+          title: "ForotPassword", // This is still set for the title, though you can omit it if you want
+          drawerItemStyle: { display: "none" }, // This hides the item from the drawer
+          headerShown: false, // This removes the header
+        }}
+      />
+    </Drawer>
   );
-}
+};
+
+export default _layout;

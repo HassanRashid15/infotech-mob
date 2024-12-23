@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 import { View, Text } from "react-native";
 import React from "react";
 import { Drawer } from "expo-router/drawer";
+=======
+import { View, Text } from 'react-native'
+import React from 'react'
+import { Drawer } from "expo-router/drawer"
+>>>>>>> fe7d07dfd3c254763b82a116791d912c52de2b7f
 const _layout = () => {
   return (
     <Drawer>
@@ -8,11 +14,15 @@ const _layout = () => {
         name="index"
         options={{ drawerLabel: "Home", title: "Home", headerShown: false }}
       />
+<<<<<<< HEAD
 
+=======
+>>>>>>> fe7d07dfd3c254763b82a116791d912c52de2b7f
       <Drawer.Screen
         name="about/index"
         options={{ drawerLabel: "Home", title: "Home" }}
       />
+<<<<<<< HEAD
       <Drawer.Screen
         name="Login"
         options={{
@@ -46,3 +56,10 @@ const _layout = () => {
 };
 
 export default _layout;
+=======
+    </Drawer>
+  );
+}
+
+export default _layout
+>>>>>>> fe7d07dfd3c254763b82a116791d912c52de2b7f

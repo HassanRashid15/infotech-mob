@@ -13,7 +13,15 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { Link } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context"; // Added for safe area handling
+<<<<<<< HEAD
 import Signup from "./Signup";
+=======
+<<<<<<< HEAD
+import Signup from "./Signup";
+=======
+import { LinearGradient } from "expo-linear-gradient";
+>>>>>>> fe7d07dfd3c254763b82a116791d912c52de2b7f
+>>>>>>> bfc1b53892246ce9bbdbd784374f448c4a64ffbb
 
 const { height } = Dimensions.get("window");
 
@@ -152,7 +160,46 @@ const Index = () => {
         <Animated.View
           style={[styles.customLayout, { height: secondLayoutHeight }]}
         >
+<<<<<<< HEAD
           <Signup/>
+=======
+<<<<<<< HEAD
+          <Signup/>
+=======
+          <ImageBackground
+            source={{
+              uri: "https://images.unsplash.com/photo-1541643600914-78b084683601?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHByb2R1Y3R8ZW58MHx8MHx8fDA%3D",
+            }}
+            style={styles.imageBackground}
+          >
+            {/* Gradient Overlay */}
+            <LinearGradient
+              colors={[
+                "rgba(0,0,0,0.8)", // Darker at the bottom
+                "rgba(255,255,255,0)", // Fades to transparent
+              ]}
+              style={styles.overlay}
+            />
+            {/* Text Content */}
+            <View style={styles.textContainer}>
+              <Text style={styles.title}>Meet your new mentor</Text>
+              <Text style={styles.subtitle}>
+                in this adventure of learning a new language
+              </Text>
+            </View>
+            {/* Button/Link */}
+            <TouchableOpacity
+              style={styles.custombutton}
+              onPress={() => console.log("Button Pressed")}
+            >
+              <Link href="/about">
+                <Text style={styles.customLink}>Go to About Page</Text>
+              </Link>
+              <Text style={styles.custombuttonText}>Explore</Text>
+            </TouchableOpacity>
+          </ImageBackground>
+>>>>>>> fe7d07dfd3c254763b82a116791d912c52de2b7f
+>>>>>>> bfc1b53892246ce9bbdbd784374f448c4a64ffbb
         </Animated.View>
       )}
     </SafeAreaView>

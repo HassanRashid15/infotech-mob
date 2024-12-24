@@ -18,8 +18,11 @@ const FloatingLabelInputSignup = ({
   value,
   onChangeText,
   secureTextEntry,
+<<<<<<< HEAD
   toggleSecureTextEntry,
   isPasswordField = false, // Add this prop to indicate if the field is a password field
+=======
+>>>>>>> bfc1b53892246ce9bbdbd784374f448c4a64ffbb
 }) => {
   const [isFocused, setIsFocused] = useState(false);
   const animatedLabelPosition = useState(new Animated.Value(value ? 1 : 0))[0];
@@ -27,11 +30,17 @@ const FloatingLabelInputSignup = ({
 
   const handleFocus = () => {
     setIsFocused(true);
+<<<<<<< HEAD
     // Animate label position (translateY)
+=======
+
+    // Animate label position (translateY) with native driver
+>>>>>>> bfc1b53892246ce9bbdbd784374f448c4a64ffbb
     Animated.timing(animatedLabelPosition, {
       toValue: 1,
       duration: 200,
       easing: Easing.linear,
+<<<<<<< HEAD
       useNativeDriver: true,
     }).start();
     // Animate label scale
@@ -40,6 +49,17 @@ const FloatingLabelInputSignup = ({
       duration: 200,
       easing: Easing.linear,
       useNativeDriver: true,
+=======
+      useNativeDriver: true, // Native driver for position
+    }).start();
+
+    // Animate label scale (shrink effect) on JS thread
+    Animated.timing(animatedLabelScale, {
+      toValue: 0.8, // Shrink the label when focused
+      duration: 200,
+      easing: Easing.linear,
+      useNativeDriver: true, // Use native driver for scaling
+>>>>>>> bfc1b53892246ce9bbdbd784374f448c4a64ffbb
     }).start();
   };
 
@@ -51,6 +71,7 @@ const FloatingLabelInputSignup = ({
         toValue: 0,
         duration: 200,
         easing: Easing.linear,
+<<<<<<< HEAD
         useNativeDriver: true,
       }).start();
       // Reset label scale
@@ -59,18 +80,34 @@ const FloatingLabelInputSignup = ({
         duration: 200,
         easing: Easing.linear,
         useNativeDriver: true,
+=======
+        useNativeDriver: true, // Native driver for position
+      }).start();
+
+      // Reset label scale (restore original size)
+      Animated.timing(animatedLabelScale, {
+        toValue: 1, // Restore the label font size
+        duration: 200,
+        easing: Easing.linear,
+        useNativeDriver: true, // Use native driver for scaling
+>>>>>>> bfc1b53892246ce9bbdbd784374f448c4a64ffbb
       }).start();
     }
   };
 
   const labelStyle = {
     position: "absolute",
+<<<<<<< HEAD
     left: 12,
+=======
+    left: 0,
+>>>>>>> bfc1b53892246ce9bbdbd784374f448c4a64ffbb
     top: 0,
     transform: [
       {
         translateY: animatedLabelPosition.interpolate({
           inputRange: [0, 1],
+<<<<<<< HEAD
           outputRange: [12, 0],
         }),
       },
@@ -80,6 +117,17 @@ const FloatingLabelInputSignup = ({
     ],
     fontSize: 16,
     color: isFocused || value ? "red" : "#aaa",
+=======
+          outputRange: [10, 0], // Moves the label from 20px down to -10px up when focused
+        }),
+      },
+      {
+        scale: animatedLabelScale, // Shrink the label when focused
+      },
+    ],
+    fontSize: 16, // Maintain a consistent font size, no need to animate it
+    color: isFocused || value ? "red" : "#aaa", // Red when focused or has value
+>>>>>>> bfc1b53892246ce9bbdbd784374f448c4a64ffbb
   };
 
   return (
@@ -95,6 +143,7 @@ const FloatingLabelInputSignup = ({
         secureTextEntry={secureTextEntry}
         style={[styles.inputSignup, isFocused && styles.inputSignupFocused]}
       />
+<<<<<<< HEAD
       {isPasswordField && (
         <TouchableOpacity
           style={styles.eyeIcon}
@@ -107,6 +156,8 @@ const FloatingLabelInputSignup = ({
           />
         </TouchableOpacity>
       )}
+=======
+>>>>>>> bfc1b53892246ce9bbdbd784374f448c4a64ffbb
     </View>
   );
 };
@@ -116,6 +167,7 @@ const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+<<<<<<< HEAD
   const [secureTextEntry, setSecureTextEntry] = useState(true); // Track password visibility
   const router = useRouter();
 
@@ -123,11 +175,30 @@ const Signup = () => {
 
   const togglePasswordVisibility = () => {
     setSecureTextEntry(!secureTextEntry); // Toggle password visibility
+=======
+  const router = useRouter(); // hook to manage navigation
+
+  const handleBackPress = () => {
+    router.back(); // go back to the previous screen
+>>>>>>> bfc1b53892246ce9bbdbd784374f448c4a64ffbb
   };
 
   return (
     <View style={styles.containerSignup}>
+<<<<<<< HEAD
       <Text style={styles.titleSignup}>Sign up</Text>
+=======
+      {/* Back Arrow */}
+      <TouchableOpacity
+        onPress={handleBackPress}
+        style={styles.backButtonSignup}
+      >
+        <Icon name="arrow-back" size={30} color="red" />
+      </TouchableOpacity>
+
+      <Text style={styles.titleSignup}>Sign up</Text>
+
+>>>>>>> bfc1b53892246ce9bbdbd784374f448c4a64ffbb
       {/* Input Fields with Floating Labels */}
       <FloatingLabelInputSignup
         label="Name"
@@ -143,6 +214,7 @@ const Signup = () => {
         label="Password"
         value={password}
         onChangeText={setPassword}
+<<<<<<< HEAD
         secureTextEntry={secureTextEntry}
         toggleSecureTextEntry={togglePasswordVisibility}
         isPasswordField={true} // Indicate this is the password field
@@ -158,6 +230,21 @@ const Signup = () => {
             style={styles.arrowIconSignup}
           />
         </Link>
+=======
+        secureTextEntry
+      />
+
+      <View style={styles.loginRowSignup}>
+        <Link href="/Login" style={styles.linkSignup}>
+          <Text style={styles.loginTextSignup}>Already have an account?</Text>
+        </Link>
+        <Icon
+          name="arrow-right-alt"
+          size={20}
+          color="red"
+          style={styles.arrowIconSignup}
+        />
+>>>>>>> bfc1b53892246ce9bbdbd784374f448c4a64ffbb
       </View>
 
       {/* Sign Up Button */}
@@ -192,6 +279,10 @@ const Signup = () => {
 };
 
 const styles = StyleSheet.create({
+<<<<<<< HEAD
+=======
+
+>>>>>>> bfc1b53892246ce9bbdbd784374f448c4a64ffbb
   containerSignup: {
     flex: 1,
     backgroundColor: "#f9f9f9",
@@ -199,6 +290,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   titleSignup: {
+<<<<<<< HEAD
     fontSize: 34,
     fontWeight: "bold",
     color: "#000",
@@ -206,6 +298,16 @@ const styles = StyleSheet.create({
     marginBottom: 40,
     marginTop: 60,
   },
+=======
+    fontSize: 34, // Sets the font size to 34 units
+    fontWeight: "bold", // Makes the title bold
+    color: "#000", // Sets the text color to black
+    textAlign: "left", // Aligns the text to the left
+    marginBottom: 40, // Adds 40 units of space below the title (between title and next component)
+    marginTop: 60, // Adds 60 units of space above the title (for better spacing from top)
+  },
+
+>>>>>>> bfc1b53892246ce9bbdbd784374f448c4a64ffbb
   backButtonSignup: {
     position: "absolute",
     top: 40,
@@ -213,12 +315,21 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   inputContainerSignup: {
+<<<<<<< HEAD
     width: "100%",
     marginBottom: 20,
     backgroundColor: "#fff",
     position: "relative",
     height: 75,
     justifyContent: "center",
+=======
+    width: "100%", // Make inputs take full width
+    marginBottom: 20,
+    backgroundColor: "#fff",
+    position: "relative",
+    height: 75, // Fixed height to prevent layout shift
+    justifyContent: "center", // Center the label vertically
+>>>>>>> bfc1b53892246ce9bbdbd784374f448c4a64ffbb
   },
   inputSignup: {
     fontSize: 16,
@@ -227,10 +338,17 @@ const styles = StyleSheet.create({
     paddingTop: 40,
     paddingRight: 25,
     paddingBottom: 10,
+<<<<<<< HEAD
     paddingLeft: 18,
   },
   inputSignupFocused: {
     borderColor: "red",
+=======
+    paddingLeft: 18, // Prevent overlap with label    width: "100%", // Ensure input takes full width
+  },
+  inputSignupFocused: {
+    borderColor: "red", // Add border color when focused
+>>>>>>> bfc1b53892246ce9bbdbd784374f448c4a64ffbb
   },
   labelSignup: {
     position: "absolute",
@@ -239,6 +357,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#aaa",
     fontWeight: "bold",
+<<<<<<< HEAD
     paddingLeft: 5,
     paddingTop: 18,
   },
@@ -247,6 +366,10 @@ const styles = StyleSheet.create({
     right: 10,
     top: 20,
     padding: 5,
+=======
+    paddingLeft: 10, // Adjust left padding for the label
+    paddingTop: 18, // Adjust top padding for the label
+>>>>>>> bfc1b53892246ce9bbdbd784374f448c4a64ffbb
   },
   loginRowSignup: {
     flexDirection: "row",
@@ -265,7 +388,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: "center",
     marginBottom: 20,
+<<<<<<< HEAD
     width: "100%",
+=======
+    width: "100%", // Full width for button
+>>>>>>> bfc1b53892246ce9bbdbd784374f448c4a64ffbb
   },
   signUpButtonTextSignup: {
     color: "#fff",
@@ -281,6 +408,7 @@ const styles = StyleSheet.create({
   socialButtonsSignup: {
     flexDirection: "row",
     justifyContent: "center",
+<<<<<<< HEAD
     marginBottom: 20,
   },
 socialButtonSignup: {
@@ -299,6 +427,17 @@ socialButtonSignup: {
   elevation: 5,                // Shadow elevation for Android
 }
 ,
+=======
+    marginBottom: 30, // Added margin at the bottom
+  },
+  socialButtonSignup: {
+    padding: 10,
+    marginHorizontal: 10,
+    borderRadius: 50,
+    borderWidth: 1,
+    borderColor: "#ccc",
+  },
+>>>>>>> bfc1b53892246ce9bbdbd784374f448c4a64ffbb
   socialIconSignup: {
     width: 30,
     height: 30,
